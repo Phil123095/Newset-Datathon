@@ -1,7 +1,6 @@
 import warnings
 
 warnings.filterwarnings("ignore")
-
 from data_processing import data_processor_training
 from helper_functions import split_function, split_function_large
 import pandas as pd
@@ -57,6 +56,7 @@ def return_columns(dict, threshold):
             continue
     return column_list
 
+
 def cross_val_test(nr_cross, select_X_train_one, y_train_one, select_X_train_two, y_train_two, select_X_test, y_test):
     all_RMSE = []
     for _ in range(nr_cross):
@@ -70,7 +70,7 @@ def cross_val_test(nr_cross, select_X_train_one, y_train_one, select_X_train_two
         RMSE = mean_squared_error(y_test, preds2, squared=False)
         all_RMSE.append(RMSE)
 
-    average_RMSE = sum(all_RMSE)/len(all_RMSE)
+    average_RMSE = sum(all_RMSE) / len(all_RMSE)
     return average_RMSE
 
 
@@ -91,14 +91,12 @@ def feature_ranker(x_train_one, y_train_one, x_train_two, y_train_two, x_test, y
 
     new_scores.sort()
 
-
     preds = pd.DataFrame(xgb_reg.predict(x_test))
     RMSE_baseline = mean_squared_error(y_test, preds, squared=False)
     print(f"Base RMSE for {target_var}, All features: {RMSE_baseline}")
 
     results = {}
     for score in new_scores:
-
         features_to_use = return_columns(importances, score)
 
         print(features_to_use)
@@ -107,7 +105,8 @@ def feature_ranker(x_train_one, y_train_one, x_train_two, y_train_two, x_test, y
         select_X_test = x_test[features_to_use]
 
         avg_RMSE = cross_val_test(5, select_X_train_one=select_X_train_one, y_train_one=y_train_one,
-                       select_X_train_two=select_X_train_two, y_train_two=y_train_two, select_X_test=select_X_test, y_test=y_test)
+                                  select_X_train_two=select_X_train_two, y_train_two=y_train_two,
+                                  select_X_test=select_X_test, y_test=y_test)
 
         results[avg_RMSE] = features_to_use
         print(
