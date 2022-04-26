@@ -3,15 +3,10 @@ import warnings
 warnings.filterwarnings("ignore")
 
 from data_processing import data_processor_full, data_processor_full_jun
-from helper_functions import split_function_large, feature_ranker, split_function
+from Archive.helper_functions import split_function_large, feature_ranker, split_function
 import pandas as pd
-import numpy as np
 import xgboost as xgb
-from sklearn.metrics import mean_squared_error, make_scorer
-from sklearn.experimental import enable_halving_search_cv
 from sklearn.model_selection import HalvingGridSearchCV
-from sklearn.preprocessing import LabelEncoder
-
 
 
 def convert_to_final(test_X, preds, var):
@@ -148,8 +143,8 @@ if __name__ == '__main__':
     early_testing = False
 
     for i in range(len(target_vars)):
-        train_data = pd.read_csv('./train_data.csv', sep=',')
-        test_data = pd.read_csv('./test.csv', sep=',')
+        train_data = pd.read_csv('../train_data.csv', sep=',')
+        test_data = pd.read_csv('../test.csv', sep=',')
 
         if early_testing:
             train_data_processed, final_all_train, train_target_vars, test_data_processed, synth_test_Y = data_processor_full_jun(

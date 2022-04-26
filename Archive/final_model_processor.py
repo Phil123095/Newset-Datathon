@@ -154,8 +154,8 @@ def final_merger(mnr_df, earlies_df, label_enc):
 
 
 if __name__ == '__main__':
-    train_data = pd.read_csv('./train_data.csv', sep=',')
-    test_data = pd.read_csv('./test.csv', sep=',')
+    train_data = pd.read_csv('../train_data.csv', sep=',')
+    test_data = pd.read_csv('../test.csv', sep=',')
 
     target_vars = [['MNR_SNR_Exp', 'Earlies_Exp'], ['Earlies_Exp', 'MNR_SNR_Exp']]
     target_vars_simple = ['Earlies_Exp', 'MNR_SNR_Exp']
@@ -201,8 +201,8 @@ if __name__ == '__main__':
 
     models_set = False
     for i in range(len(target_vars)):
-        train_data = pd.read_csv('./train_data.csv', sep=',')
-        test_data = pd.read_csv('./test.csv', sep=',')
+        train_data = pd.read_csv('../train_data.csv', sep=',')
+        test_data = pd.read_csv('../test.csv', sep=',')
         train_data_processed, train_target_vars, test_data_processed = data_processor_full(train_df=train_data,
                                                                                            target_df=test_data,
                                                                                            dep_vars=target_vars_simple,

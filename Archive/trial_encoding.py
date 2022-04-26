@@ -1,16 +1,9 @@
-from data_processing import data_processor, split_function
 import pandas as pd
-import numpy as np
-from sklearn.preprocessing import LabelEncoder
-import xgboost as xgb
-from sklearn.metrics import mean_squared_error, make_scorer
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import LabelEncoder
 from sklearn.cluster import KMeans
-from sklearn.model_selection import GridSearchCV
 
-
-train_data = pd.read_csv('./train_data.csv', sep=',')
+train_data = pd.read_csv('../train_data.csv', sep=',')
 
 
 def decode_stations(df, column_decode, encoder):

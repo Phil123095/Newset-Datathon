@@ -192,7 +192,7 @@ if __name__ == '__main__':
 
     result_dfs = []
     for i in range(len(target_vars)):
-        train_data = pd.read_csv('./train_data.csv', sep=',')
+        train_data = pd.read_csv('../train_data.csv', sep=',')
         final_data = data_processor_training(df=train_data,
                                              dep_vars=target_vars_simple,
                                              date_col=base_date_col,
